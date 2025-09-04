@@ -10,9 +10,10 @@ class SlopeFieldApp:
     def __init__(self, root):
             self.root = root
             self.root.title("Interactive Slope Field Generator")
-            # Set the window icon for Windows taskbar (requires .ico file)
+            # Set the window icon using PNG file
             try:
-                self.root.iconbitmap("slope-field-1.ico")
+                icon = tk.PhotoImage(file="slope-field-1.png")
+                self.root.iconphoto(True, icon)
             except Exception as e:
                 print(f"Could not set icon: {e}")
 
