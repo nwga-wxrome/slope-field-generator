@@ -32,9 +32,9 @@ python slope_field_generator.py
 You will be prompted to enter the differential equation and other parameters. The script will display the slope field using Matplotlib.
 
 ## Example
-For the equation dy/dx = x + y, enter:
+For the equation dy/dx = -sin(x), enter:
 ```
-x + y
+-sin(x)
 ```
 
 ## License
