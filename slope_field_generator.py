@@ -8,57 +8,62 @@ from sympy.parsing.sympy_parser import parse_expr, standard_transformations, imp
 
 class SlopeFieldApp:
     def __init__(self, root):
-        self.root = root
-        self.root.title("Interactive Slope Field Generator")
+            self.root = root
+            self.root.title("Interactive Slope Field Generator")
+            # Set the window icon for Windows taskbar (requires .ico file)
+            try:
+                self.root.iconbitmap("slope-field-1.ico")
+            except Exception as e:
+                print(f"Could not set icon: {e}")
 
-        self.function_string = "-cos(x)" # Default to the user's example
+            self.function_string = "-cos(x)" # Default to the user's example
 
-        # --- Main layout frames ---
-        canvas_frame = tk.Frame(self.root)
-        canvas_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-        controls_frame = tk.Frame(self.root)
-        controls_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=10)
+            # --- Main layout frames ---
+            canvas_frame = tk.Frame(self.root)
+            canvas_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+            controls_frame = tk.Frame(self.root)
+            controls_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=10)
 
-        # --- Matplotlib Figure and Canvas ---
-        self.fig = plt.figure(figsize=(8, 8))
-        self.ax = self.fig.add_subplot(111)
-        self.canvas = FigureCanvasTkAgg(self.fig, master=canvas_frame)
-        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+            # --- Matplotlib Figure and Canvas ---
+            self.fig = plt.figure(figsize=(8, 8))
+            self.ax = self.fig.add_subplot(111)
+            self.canvas = FigureCanvasTkAgg(self.fig, master=canvas_frame)
+            self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         
-        # --- Create and arrange control widgets ---
-        # Frame for text entry boxes
-        entry_frame = tk.Frame(controls_frame)
-        entry_frame.pack(pady=5)
+            # --- Create and arrange control widgets ---
+            # Frame for text entry boxes
+            entry_frame = tk.Frame(controls_frame)
+            entry_frame.pack(pady=5)
         
-        # Dictionary to hold entry widgets
-        self.entries = {}
+            # Dictionary to hold entry widgets
+            self.entries = {}
         
-        # Create labels and entry boxes for each setting
-        for i, setting in enumerate(["X-Min", "X-Max", "Y-Min", "Y-Max", "Grid Density"]):
-            label = tk.Label(entry_frame, text=f"{setting}:")
-            label.grid(row=0, column=i*2, padx=(10, 2), pady=5)
-            entry = tk.Entry(entry_frame, width=7)
-            entry.grid(row=0, column=i*2 + 1, padx=(0, 10), pady=5)
-            self.entries[setting] = entry
+            # Create labels and entry boxes for each setting
+            for i, setting in enumerate(["X-Min", "X-Max", "Y-Min", "Y-Max", "Grid Density"]):
+                label = tk.Label(entry_frame, text=f"{setting}:")
+                label.grid(row=0, column=i*2, padx=(10, 2), pady=5)
+                entry = tk.Entry(entry_frame, width=7)
+                entry.grid(row=0, column=i*2 + 1, padx=(0, 10), pady=5)
+                self.entries[setting] = entry
 
-        # Set default values
-        self.entries["X-Min"].insert(0, "-7")
-        self.entries["X-Max"].insert(0, "7")
-        self.entries["Y-Min"].insert(0, "-3")
-        self.entries["Y-Max"].insert(0, "3")
-        self.entries["Grid Density"].insert(0, "25")
+            # Set default values
+            self.entries["X-Min"].insert(0, "-7")
+            self.entries["X-Max"].insert(0, "7")
+            self.entries["Y-Min"].insert(0, "-3")
+            self.entries["Y-Max"].insert(0, "3")
+            self.entries["Grid Density"].insert(0, "25")
 
-        # Frame for buttons
-        button_frame = tk.Frame(controls_frame)
-        button_frame.pack(pady=5)
+            # Frame for buttons
+            button_frame = tk.Frame(controls_frame)
+            button_frame.pack(pady=5)
 
-        self.change_button = tk.Button(button_frame, text="Change Function", command=self.prompt_for_function)
-        self.change_button.pack(side=tk.LEFT, padx=10)
+            self.change_button = tk.Button(button_frame, text="Change Function", command=self.prompt_for_function)
+            self.change_button.pack(side=tk.LEFT, padx=10)
         
-        self.redraw_button = tk.Button(button_frame, text="Update Plot Settings", command=self.plot_slope_field)
-        self.redraw_button.pack(side=tk.LEFT, padx=10)
+            self.redraw_button = tk.Button(button_frame, text="Update Plot Settings", command=self.plot_slope_field)
+            self.redraw_button.pack(side=tk.LEFT, padx=10)
 
-        self.plot_slope_field()
+            self.plot_slope_field()
 
     def plot_slope_field(self):
         """Clears the old plot and draws a new one based on current settings."""
