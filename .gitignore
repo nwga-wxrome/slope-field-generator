@@ -1,0 +1,49 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Build and distribution
+build/
+dist/
+**/build/
+**/dist/
+**/build/**
+**/dist/**
+
+# Python build files
+*.spec
+*.pyc
+*.pyo
+*.pyd
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution packages
+*.egg
+*.egg-info/
+eggs/
+*.egg-info/
+*.manifest
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Distribution files
+*.zip
+slope_field_generator_v1.0.0.zip
+
+# Logs and databases
+*.log
+*.sqlite
