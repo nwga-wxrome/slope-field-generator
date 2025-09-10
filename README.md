@@ -8,7 +8,9 @@ This project is a Python script for generating slope fields, which are graphical
 - Adjustable vector length and density
 - Simple and easy-to-use interface
 
-  <img width="2111" height="989" alt="image" src="https://github.com/user-attachments/assets/333fb1f1-06a8-47d5-9f5e-1c26e5ee2314" />
+  <img width="7620" height="3630" alt="plotmaisa" src="https://github.com/user-attachments/assets/2bc9e27c-a3a0-42f4-bd5c-333a785e45cc" /> <img width="7620" height="3630" alt="plotsolut" src="https://github.com/user-attachments/assets/750f63b1-38de-4c30-9bd6-caa8bb8c25f9" />
+
+
 
 
 ## Requirements
